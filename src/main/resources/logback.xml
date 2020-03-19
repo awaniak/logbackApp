@@ -1,0 +1,24 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>LEEF:2.0|awaniak|%X{appName}|%X{appVersion}|%d{HH:mm:ss.SSS}|%logger{0}|%level|  - %msg%n</pattern>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LEEF-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logback-app-leef.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>LEEF:2.0|awaniak|%X{appName}|%X{appVersion}|%d{HH:mm:ss.SSS}|%X{event}|devTime=%d{yyyy-MM-dd HH:mm:ss.SSS}|devTimeFormat=yyyy-MM-dd HH:mm:ss.SSS|transactionId=%X{transactionId}|clientIp=%X{clientIp}|source=%X{source}|userAgent=%X{userAgent}|fingerprint=%X{fingerprint}|checksum=%X{checksum}%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="leef-logger" level="DEBUG" additivity="false">
+        <appender-ref ref="LEEF-FILE"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
